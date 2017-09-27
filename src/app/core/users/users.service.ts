@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class UsersService {
   url: string;
   constructor(private http: Http) {
-    this.url = 'http://localhost:3000/users';
+    this.url = 'http://jsonplaceholder.typicode.com/users';
   }
 
   getAll() {
@@ -19,7 +19,7 @@ export class UsersService {
   }
 
   get(id: string | number) {
-    return this.http.get(`${this.url}/users/${id}`)
+    return this.http.get(`${this.url}/${id}`)
       .map(res => res.json());
   }
 
@@ -28,13 +28,13 @@ export class UsersService {
       .map(res => res.json());
   }
 
-  update(user) {
-    return this.http.put(`${this.url}/users/${user.id}`, JSON.stringify(user))
+  update(user: User) {
+    return this.http.put(`${this.url}/${user.id}`, JSON.stringify(user))
       .map(res => res.json());
   }
 
   delete(id: string | number) {
-    return this.http.delete(`${this.url}/users/${id}`)
+    return this.http.delete(`${this.url}/${id}`)
       .map(res => res.json());
   }
 }
