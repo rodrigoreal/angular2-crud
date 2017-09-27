@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Users } from './users';
+import { User } from './index';
 
 import 'rxjs/add/operator/map';
 
@@ -18,12 +18,12 @@ export class UsersService {
       .map(res => res.json());
   }
 
-  get(id: string) {
+  get(id: string | number) {
     return this.http.get(`${this.url}/users/${id}`)
       .map(res => res.json());
   }
 
-  add(user: Users) {
+  add(user: User) {
     return this.http.post(this.url, JSON.stringify(user))
       .map(res => res.json());
   }
@@ -33,7 +33,7 @@ export class UsersService {
       .map(res => res.json());
   }
 
-  delete(id: string) {
+  delete(id: string | number) {
     return this.http.delete(`${this.url}/users/${id}`)
       .map(res => res.json());
   }
